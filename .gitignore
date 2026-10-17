@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example
+# Personal state belongs outside Git; only assets/templates is public.
+/HUMAN.md
+/BASELINE.md
+/STATE.md
+/JOURNAL.md
+/.human-rlaif.json
+/events/

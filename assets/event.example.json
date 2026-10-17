@@ -1,0 +1,11 @@
+{
+  "id": "example-001",
+  "mode": "learning",
+  "human_input": "我倾向修改开头，但缺少用户数据。",
+  "ai_feedback": "请区分点击与读完。",
+  "human_response": "修改假设：先关注读完，保留人群不匹配这一解释。",
+  "action": "pending",
+  "reality_feedback": "unknown",
+  "evidence_status": "pending",
+  "sources": []
+}
