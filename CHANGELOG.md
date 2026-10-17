@@ -2,7 +2,7 @@
 
 ## 0.1.0 · 2026-10-17
 
-首次加入独立 human-rlaif Skill；与 capability-loop 并存。
+首次在 [pbl-loop](https://github.com/dlxeva/pbl-loop) 中加入 human-rlaif Skill，随后迁至本独立仓库。原 capability-loop 保留在 pbl-loop，无需同时安装。
 
 包括人的高标准参与规范、目标责任、基线、三模式切换、召回摩擦、现实反馈、迁移与元协作复盘。加入私人工作区的 init / doctor / record 脚本、模板、合成案例、结构校验与脚本测试。
 
