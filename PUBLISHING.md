@@ -1,25 +1,19 @@
-# 发布为独立 GitHub 仓库
+# 维护者发布说明
 
-目标公开仓库：`dlxeva/human-rlaif`。请创建一个 **Public / Empty** 仓库，创建时不自动生成 README、.gitignore 和 LICENSE（本包已提供）。
+## 统一英文简介
 
-- 仓库地址： https://github.com/new?name=human-rlaif
-- 建议简介：`Human-RLAIF: an agent skill for reflective human–AI collaboration, rigorous human input, feedback and learning evidence.`
-- 推荐 Topics：`agent-skills`, `human-ai-collaboration`, `human-rlaif`, `reflective-learning`, `ai-literacy`
+An Agent Skill for practicing judgment through AI feedback and real-world checks.
 
-创建后，可让有 GitHub 写入权限的 Agent 完成提交，也可以在本目录运行：
+README.en.md、此处和仓库 About 应使用同一简介。推荐 topics：`agent-skills`、`human-ai-collaboration`、`human-rlaif`、`reflective-learning`、`ai-literacy`。Topics 与 About 是远端仓库设置，不会随本文件或 PR 自动更新。
 
-```bash
-git init -b main
-git add .
-git commit -m "Initial standalone human-rlaif skill v0.1.0"
-git remote add origin https://github.com/dlxeva/human-rlaif.git
-git push -u origin main
-```
+## 发布前检查
 
-命令需要 Git 用户信息及 GitHub 身份验证，执行前检查当前仓库是新建的 `human-rlaif` 而非别的项目。当前只包含公共 Skill、模板、测试、论文引用元数据和文档。不要把自己真正的 HUMAN.md、BASELINE.md、JOURNAL.md 或私人对话提交到远端。
+1. 在干净检出中运行 `python scripts/validate_human_rlaif.py`、`python -m unittest discover -s tests -p 'test*.py' -v` 与 CI 固定版本的 `skills-ref validate skill/human-rlaif`。
+2. 检查确切待发布提交的 CI；不能用旧提交绿灯代替。保留既有失败及冻结评测，新结论另建 run。
+3. 安装包只包含 `skill/human-rlaif/`，检查全部相对链接和模板。不得包含私人 HUMAN、日志、客户资料或凭据。
+4. 审阅 [待发布说明](RELEASE_NOTES.md)，确认版本、兼容性与已知限制。版本号、tag 和 release 仅在维护者明确批准后创建；本次改进不发布。
+5. 新提交使用 GitHub 设置中显示的 verified noreply 地址；只配置当前仓库，不改全局 Git 身份、不重写旧历史。可检查 `git show --format=fuller --no-patch HEAD`；提交中不应包含本机用户/主机邮箱。
 
-独立仓库上线后，可在 `pbl-loop` 的 README 添加一个**纯文档链接**到 `human-rlaif`，说明两者关联且无需互相安装。不要把 `human-rlaif` 技能文件复制回 pbl-loop。
+## 论文
 
-## 论文全文处理
-
-当前 `paper/` 包含正式论文的引用、DOI 和发布版链接，**没有 PDF 再发布副本**。正式发布稿与许可状态核实后，可以选择额外保存确定版本的 PDF 于 `paper/releases/`，单独写清版本号和论文许可；MIT 仅适用于 Skill 代码与原创文档。
+论文 PDF 不进入技能安装包。本仓库不再分发论文；如需另行发布稿本，先取得该稿本权利人的明确许可，并单独标明版本及许可证，不能沿用软件 MIT。

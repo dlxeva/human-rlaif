@@ -1,0 +1,122 @@
+Path redaction only: repository and dedicated temporary test prefixes replaced. Test output/counts unchanged.
+
+test_cli_requires_event (test_human_rlaif.WorkspaceTests.test_cli_requires_event) ... human-rlaif: record 需要 --event。
+ok
+test_cli_workflow_fresh_process_and_preservation (test_human_rlaif.WorkspaceTests.test_cli_workflow_fresh_process_and_preservation)
+真实 CLI/文件回归，不代表 Agent 自主操作或真人学习效果。 ... ok
+test_doctor_missing_file (test_human_rlaif.WorkspaceTests.test_doctor_missing_file) ... ok
+test_doctor_refuses_schema_change (test_human_rlaif.WorkspaceTests.test_doctor_refuses_schema_change) ... ok
+test_external_claim_requires_sources_and_feedback (test_human_rlaif.WorkspaceTests.test_external_claim_requires_sources_and_feedback) ... ok
+test_init_draft_and_structure (test_human_rlaif.WorkspaceTests.test_init_draft_and_structure) ... ok
+test_private_permissions (test_human_rlaif.WorkspaceTests.test_private_permissions) ... ok
+test_record_does_not_modify_policy (test_human_rlaif.WorkspaceTests.test_record_does_not_modify_policy) ... <REPOSITORY>/tests/test_human_rlaif.py:139: UserWarning: HUMAN.md 仍为 draft；保存事件不代表确认协议。
+  workspace.record(self.root, data)
+ok
+test_record_preserves_original_and_adds_receipt_time (test_human_rlaif.WorkspaceTests.test_record_preserves_original_and_adds_receipt_time) ... <REPOSITORY>/tests/test_human_rlaif.py:83: UserWarning: HUMAN.md 仍为 draft；保存事件不代表确认协议。
+  path = workspace.record(self.root, data)
+ok
+test_record_refuses_duplicate (test_human_rlaif.WorkspaceTests.test_record_refuses_duplicate) ... <REPOSITORY>/tests/test_human_rlaif.py:91: UserWarning: HUMAN.md 仍为 draft；保存事件不代表确认协议。
+  path = workspace.record(self.root, event())
+<REPOSITORY>/tests/test_human_rlaif.py:94: UserWarning: HUMAN.md 仍为 draft；保存事件不代表确认协议。
+  workspace.record(self.root, event())
+ok
+test_record_rejects_missing_reason (test_human_rlaif.WorkspaceTests.test_record_rejects_missing_reason) ... ok
+test_record_rejects_traversal (test_human_rlaif.WorkspaceTests.test_record_rejects_traversal) ... ok
+test_refuse_git_directory (test_human_rlaif.WorkspaceTests.test_refuse_git_directory) ... ok
+test_refuse_git_worktree_file (test_human_rlaif.WorkspaceTests.test_refuse_git_worktree_file) ... ok
+test_refuse_relative_path (test_human_rlaif.WorkspaceTests.test_refuse_relative_path) ... ok
+test_refuse_symlink_root (test_human_rlaif.WorkspaceTests.test_refuse_symlink_root) ... ok
+test_repeat_preserves_user_edits (test_human_rlaif.WorkspaceTests.test_repeat_preserves_user_edits) ... ok
+test_symlink_events_rejected (test_human_rlaif.WorkspaceTests.test_symlink_events_rejected) ... ok
+test_unknown_directory_is_not_overwritten (test_human_rlaif.WorkspaceTests.test_unknown_directory_is_not_overwritten) ... ok
+test_complete_portable_copy_runs_cli_without_repository (test_installable_package.InstallablePackageTests.test_complete_portable_copy_runs_cli_without_repository) ... ok
+test_description_boundaries_and_type (test_skill_validation.FrontmatterTests.test_description_boundaries_and_type) ... ok
+test_metadata_must_map_strings_to_strings (test_skill_validation.FrontmatterTests.test_metadata_must_map_strings_to_strings) ... ok
+test_missing_dependency_is_actionable (test_skill_validation.FrontmatterTests.test_missing_dependency_is_actionable) ... ok
+test_name_character_and_length_constraints (test_skill_validation.FrontmatterTests.test_name_character_and_length_constraints) ... ok
+test_name_must_match_folder (test_skill_validation.FrontmatterTests.test_name_must_match_folder) ... ok
+test_name_nonstring (test_skill_validation.FrontmatterTests.test_name_nonstring) ... ok
+test_optional_compatibility_boundaries_and_type (test_skill_validation.FrontmatterTests.test_optional_compatibility_boundaries_and_type) ... ok
+test_optional_fields_and_no_extra_fields (test_skill_validation.FrontmatterTests.test_optional_fields_and_no_extra_fields) ... ok
+test_required_fields (test_skill_validation.FrontmatterTests.test_required_fields) ... ok
+test_absolute_file_and_windows_paths_fail (test_skill_validation.LinkTests.test_absolute_file_and_windows_paths_fail) ... ok
+test_anchors_and_supported_remote_links (test_skill_validation.LinkTests.test_anchors_and_supported_remote_links) ... ok
+test_encoded_space_and_parentheses (test_skill_validation.LinkTests.test_encoded_space_and_parentheses) ... ok
+test_markdown_code_examples_are_not_followed (test_skill_validation.LinkTests.test_markdown_code_examples_are_not_followed) ... ok
+test_markdown_inline_reference_images_and_titles (test_skill_validation.LinkTests.test_markdown_inline_reference_images_and_titles) ... ok
+test_missing_file_fails (test_skill_validation.LinkTests.test_missing_file_fails) ... ok
+test_nested_skill_doc_may_link_to_skill_root (test_skill_validation.LinkTests.test_nested_skill_doc_may_link_to_skill_root) ... ok
+test_repo_cannot_escape_repo (test_skill_validation.LinkTests.test_repo_cannot_escape_repo) ... ok
+test_root_doc_may_link_into_skill (test_skill_validation.LinkTests.test_root_doc_may_link_into_skill) ... ok
+test_scans_both_readmes_and_repository_docs (test_skill_validation.LinkTests.test_scans_both_readmes_and_repository_docs) ... ok
+test_skill_cannot_link_to_repo_docs (test_skill_validation.LinkTests.test_skill_cannot_link_to_repo_docs) ... ok
+test_symlink_destination_outside_skill_fails (test_skill_validation.LinkTests.test_symlink_destination_outside_skill_fails) ... ok
+test_symlink_markdown_source_outside_skill_is_not_read (test_skill_validation.LinkTests.test_symlink_markdown_source_outside_skill_is_not_read) ... ok
+test_unsafe_protocol_is_not_silently_skipped (test_skill_validation.LinkTests.test_unsafe_protocol_is_not_silently_skipped) ... ok
+test_valid_relative_link (test_skill_validation.LinkTests.test_valid_relative_link) ... ok
+test_both_readmes_are_required (test_skill_validation.RepositoryTests.test_both_readmes_are_required) ... ok
+test_case_symlink_outside_repo_is_rejected_before_reading (test_skill_validation.RepositoryTests.test_case_symlink_outside_repo_is_rejected_before_reading) ... ok
+test_ci_uses_pinned_official_source_and_all_tests (test_skill_validation.RepositoryTests.test_ci_uses_pinned_official_source_and_all_tests) ... ok
+test_duplicate_case_identifiers (test_skill_validation.RepositoryTests.test_duplicate_case_identifiers) ... ok
+test_main_reports_failure (test_skill_validation.RepositoryTests.test_main_reports_failure) ... ok
+test_malformed_cases_return_errors_instead_of_crashing (test_skill_validation.RepositoryTests.test_malformed_cases_return_errors_instead_of_crashing) ... ok
+test_metadata_cannot_be_moved_to_repo_root (test_skill_validation.RepositoryTests.test_metadata_cannot_be_moved_to_repo_root) ... ok
+test_minimal_valid_repository (test_skill_validation.RepositoryTests.test_minimal_valid_repository) ... ok
+test_missing_dependency_fails_repository_check (test_skill_validation.RepositoryTests.test_missing_dependency_fails_repository_check) ... ok
+test_missing_skill_resource (test_skill_validation.RepositoryTests.test_missing_skill_resource) ... ok
+test_project_line_budget (test_skill_validation.RepositoryTests.test_project_line_budget) ... ok
+test_skill_directory_symlink_is_rejected_before_reading (test_skill_validation.RepositoryTests.test_skill_directory_symlink_is_rejected_before_reading) ... ok
+test_crlf_delimiters (test_skill_validation.YamlParsingTests.test_crlf_delimiters) ... ok
+test_delimiter_inside_scalar_does_not_end_frontmatter (test_skill_validation.YamlParsingTests.test_delimiter_inside_scalar_does_not_end_frontmatter) ... ok
+test_invalid_yaml_duplicate_key_and_nonmapping (test_skill_validation.YamlParsingTests.test_invalid_yaml_duplicate_key_and_nonmapping) ... ok
+test_literal_and_folded_description (test_skill_validation.YamlParsingTests.test_literal_and_folded_description) ... ok
+test_missing_or_non_line_delimiters (test_skill_validation.YamlParsingTests.test_missing_or_non_line_delimiters) ... ok
+test_nested_metadata_remains_invalid_instead_of_coerced (test_skill_validation.YamlParsingTests.test_nested_metadata_remains_invalid_instead_of_coerced) ... ok
+test_quoted_strings_comments_and_metadata (test_skill_validation.YamlParsingTests.test_quoted_strings_comments_and_metadata) ... ok
+test_all_new_directories_files_events_and_export_private (test_workspace_v2.WorkspaceV2Tests.test_all_new_directories_files_events_and_export_private) ... ok
+test_all_optional_descriptive_fields_round_trip (test_workspace_v2.WorkspaceV2Tests.test_all_optional_descriptive_fields_round_trip) ... ok
+test_calibration_empty_has_null_metrics (test_workspace_v2.WorkspaceV2Tests.test_calibration_empty_has_null_metrics) ... ok
+test_calibration_excludes_raw_duplicate_dangling_and_early_resolutions (test_workspace_v2.WorkspaceV2Tests.test_calibration_excludes_raw_duplicate_dangling_and_early_resolutions) ... ok
+test_calibration_known_brier_hit_rate_bins_and_unresolved (test_workspace_v2.WorkspaceV2Tests.test_calibration_known_brier_hit_rate_bins_and_unresolved) ... ok
+test_cli_new_commands_errors_and_json_outputs (test_workspace_v2.WorkspaceV2Tests.test_cli_new_commands_errors_and_json_outputs) ... ok
+test_confidence_boundaries_and_nonprobability_rejected (test_workspace_v2.WorkspaceV2Tests.test_confidence_boundaries_and_nonprobability_rejected) ... ok
+test_due_at_must_follow_feedback (test_workspace_v2.WorkspaceV2Tests.test_due_at_must_follow_feedback) ... ok
+test_due_boundaries_offsets_sorting_missing_dates_and_determinism (test_workspace_v2.WorkspaceV2Tests.test_due_boundaries_offsets_sorting_missing_dates_and_determinism) ... ok
+test_due_completion_immutable_explicit_and_historical (test_workspace_v2.WorkspaceV2Tests.test_due_completion_immutable_explicit_and_historical) ... ok
+test_due_completion_rejects_missing_early_self_or_unscheduled_links (test_workspace_v2.WorkspaceV2Tests.test_due_completion_rejects_missing_early_self_or_unscheduled_links) ... ok
+test_due_does_not_trust_invalid_stored_completions (test_workspace_v2.WorkspaceV2Tests.test_due_does_not_trust_invalid_stored_completions) ... ok
+test_duplicate_json_keys_and_oversized_input_rejected (test_workspace_v2.WorkspaceV2Tests.test_duplicate_json_keys_and_oversized_input_rejected) ... ok
+test_existing_directory_untouched_and_symlink_ancestors_rejected (test_workspace_v2.WorkspaceV2Tests.test_existing_directory_untouched_and_symlink_ancestors_rejected) ... ok
+test_export_refuses_overwrite_symlink_url_relative_and_events_target (test_workspace_v2.WorkspaceV2Tests.test_export_refuses_overwrite_symlink_url_relative_and_events_target) ... ok
+test_export_whitelist_removes_free_text_paths_ids_and_timestamps (test_workspace_v2.WorkspaceV2Tests.test_export_whitelist_removes_free_text_paths_ids_and_timestamps) ... ok
+test_forecast_group_and_timestamps_are_required (test_workspace_v2.WorkspaceV2Tests.test_forecast_group_and_timestamps_are_required) ... ok
+test_git_worktree_directory_file_and_broken_marker_rejected (test_workspace_v2.WorkspaceV2Tests.test_git_worktree_directory_file_and_broken_marker_rejected) ... ok
+test_init_missing_template_creates_nothing (test_workspace_v2.WorkspaceV2Tests.test_init_missing_template_creates_nothing) ... ok
+test_init_rollback_keeps_replacement_inode (test_workspace_v2.WorkspaceV2Tests.test_init_rollback_keeps_replacement_inode) ... ok
+test_init_rollback_keeps_unowned_injected_files (test_workspace_v2.WorkspaceV2Tests.test_init_rollback_keeps_unowned_injected_files) ... ok
+test_init_rolls_back_owned_files_and_new_parents_on_write_failure (test_workspace_v2.WorkspaceV2Tests.test_init_rolls_back_owned_files_and_new_parents_on_write_failure) ... ok
+test_input_and_stored_validation_are_separate (test_workspace_v2.WorkspaceV2Tests.test_input_and_stored_validation_are_separate) ... ok
+test_invalid_marker_versions_do_not_pass_bool_as_one (test_workspace_v2.WorkspaceV2Tests.test_invalid_marker_versions_do_not_pass_bool_as_one) ... ok
+test_invalid_or_naive_times_rejected_everywhere (test_workspace_v2.WorkspaceV2Tests.test_invalid_or_naive_times_rejected_everywhere) ... ok
+test_legacy_marker_and_event_are_not_migrated (test_workspace_v2.WorkspaceV2Tests.test_legacy_marker_and_event_are_not_migrated) ... ok
+test_missing_timestamp_pair_rejected_but_legacy_omission_allowed (test_workspace_v2.WorkspaceV2Tests.test_missing_timestamp_pair_rejected_but_legacy_omission_allowed) ... ok
+test_new_workspace_v2_and_draft_warning (test_workspace_v2.WorkspaceV2Tests.test_new_workspace_v2_and_draft_warning) ... ok
+test_nonforecast_v2_learning_assessment_and_clean_require_times (test_workspace_v2.WorkspaceV2Tests.test_nonforecast_v2_learning_assessment_and_clean_require_times) ... ok
+test_offsets_compare_by_instant_not_lexical_order (test_workspace_v2.WorkspaceV2Tests.test_offsets_compare_by_instant_not_lexical_order) ... ok
+test_optional_types_and_enums_are_strict (test_workspace_v2.WorkspaceV2Tests.test_optional_types_and_enums_are_strict) ... ok
+test_original_v1_records_work_through_all_reports_without_changes (test_workspace_v2.WorkspaceV2Tests.test_original_v1_records_work_through_all_reports_without_changes) ... ok
+test_production_exemption_and_legacy_writes_in_new_workspace (test_workspace_v2.WorkspaceV2Tests.test_production_exemption_and_legacy_writes_in_new_workspace) ... ok
+test_record_lock_prevents_racing_updates_and_is_never_removed_if_unowned (test_workspace_v2.WorkspaceV2Tests.test_record_lock_prevents_racing_updates_and_is_never_removed_if_unowned) ... ok
+test_record_rejects_future_claimed_feedback (test_workspace_v2.WorkspaceV2Tests.test_record_rejects_future_claimed_feedback) ... ok
+test_resolution_preserves_original_and_refuses_second_result (test_workspace_v2.WorkspaceV2Tests.test_resolution_preserves_original_and_refuses_second_result) ... ok
+test_resolution_requires_boolean_verified_source_and_prior_forecast (test_workspace_v2.WorkspaceV2Tests.test_resolution_requires_boolean_verified_source_and_prior_forecast) ... ok
+test_sync_warning_is_heuristic_and_does_not_claim_detection (test_workspace_v2.WorkspaceV2Tests.test_sync_warning_is_heuristic_and_does_not_claim_detection) ... ok
+test_timestamps_equal_reversed_and_same_instant_offsets_rejected (test_workspace_v2.WorkspaceV2Tests.test_timestamps_equal_reversed_and_same_instant_offsets_rejected) ... ok
+test_unknown_fields_rejected_in_input_and_storage (test_workspace_v2.WorkspaceV2Tests.test_unknown_fields_rejected_in_input_and_storage) ... ok
+test_unsafe_event_files_and_mismatched_id_fail_closed (test_workspace_v2.WorkspaceV2Tests.test_unsafe_event_files_and_mismatched_id_fail_closed) ... ok
+test_write_new_fsync_failure_removes_only_own_file (test_workspace_v2.WorkspaceV2Tests.test_write_new_fsync_failure_removes_only_own_file) ... ok
+
+----------------------------------------------------------------------
+Ran 105 tests in 0.650s
+
+OK
