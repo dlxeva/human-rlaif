@@ -280,5 +280,7 @@
     "assets/templates/JOURNAL.md": "bf95e4781db1a382d438937bc5bf79e8829a4c5a157aa151ce291370b77ce25d",
     "assets/templates/BASELINE.md": "bd52e26e74616c4f8a9ae6d6c8e4ade160f9b7798dc5eff788e11042c8047ead",
     "assets/templates/HUMAN.md": "a9e76ed7d11b85947904f5030098e75c9b7451159ad29ad23a88e4ee925b466e"
-  }
+  },
+  "followup_diagnostics": "startup-diagnostics.json",
+  "current_retest_status": "blocked_authentication: isolated HOME/CODEX_HOME initialization succeeds; model request fails 401 without separately authorized sandbox login. Original failure and blocked details above retained as historical first-round evidence."
 }

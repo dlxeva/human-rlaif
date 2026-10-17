@@ -1,0 +1,137 @@
+{
+  "synthetic_only": true,
+  "diagnostic_date_utc": "2026-10-17T10:04:50.028524+00:00",
+  "tested_skill_commit": "75d75d6ad8187a01c7feb68f2e596d57357cb473",
+  "cli_version": "0.145.0",
+  "classification": "startup/authentication prerequisite diagnostics, not Agent behavior regression",
+  "sources": {
+    "exec_init": "https://github.com/openai/codex/blob/rust-v0.145.0/codex-rs/exec/src/lib.rs",
+    "in_process_start": "https://github.com/openai/codex/blob/rust-v0.145.0/codex-rs/app-server/src/in_process.rs",
+    "installation_id": "https://github.com/openai/codex/blob/rust-v0.145.0/codex-rs/core/src/installation_id.rs",
+    "configuration": "https://learn.chatgpt.com/docs/config-file/config-reference",
+    "environment": "https://learn.chatgpt.com/docs/config-file/environment-variables"
+  },
+  "source_git_blob_shas": {
+    "exec-lib.rs": "368bcf64a4f92dedad9dfba31a6ea2127ae027b8",
+    "client-lib.rs": "a46feb544aa1c03061b11cac9fe31c04e4f9e63b",
+    "in-process.rs": "84fec13b2296e9bd3ea25ceac5d21b0fc46c9235",
+    "installation-id.rs": "a42e6b6d8353c8b5e4e14e5413850402bd5cb64b"
+  },
+  "attempts": [
+    {
+      "id": "original-strict",
+      "result": "exit 1, state_5.sqlite write denied and app-server initialization EPERM",
+      "previous_evidence_preserved": true
+    },
+    {
+      "id": "redirect-sqlite-log-tmp",
+      "changes": [
+        "sqlite_home=<SANDBOX>/runtime",
+        "log_dir=<SANDBOX>/log",
+        "TMPDIR=<SANDBOX>/tmp",
+        "HOME=<SANDBOX>/home",
+        "CODEX_HOME remained existing real login location, read-only to test process"
+      ],
+      "result": "state DB readonly warning resolved; app-server initialization still EPERM",
+      "privacy_limitation": "runtime automatically scanned legacy session metadata during backfill; no user transcript was intentionally opened or passed to a tested model; runtime index kept private and quarantined, not published"
+    },
+    {
+      "id": "fully-isolated-home",
+      "changes": [
+        "HOME=<SANDBOX>/home",
+        "CODEX_HOME=<SANDBOX>/clean-codex",
+        "TMPDIR=<SANDBOX>/tmp",
+        "OPENAI_API_KEY/CODEX_API_KEY/CODEX_ACCESS_TOKEN unset",
+        "real Codex home and private library reads denied",
+        "all writes restricted to sandbox",
+        "approval_policy=never",
+        "ignore-user-config",
+        "ephemeral",
+        "project_doc_max_bytes=0",
+        "history.persistence=none",
+        "features.shell_snapshot=false"
+      ],
+      "profile": "(version 1)(allow default)(deny file-write*)(deny file-read* (subpath \"<REAL_CODEX_HOME>\") (subpath \"<PRIVATE_LIBRARY>\"))(allow file-write* (subpath \"<SANDBOX>\"))",
+      "initialization": "thread.started and turn.started observed; isolated installation_id created; no isolated auth.json",
+      "exit_code": 1,
+      "model_request": "runtime log reports gpt-5.6-sol, low reasoning; no model response due 401",
+      "result": "HTTP 401 Missing bearer or basic authentication, websocket and HTTPS; turn.failed",
+      "events": [
+        {
+          "type": "thread.started",
+          "thread_id": "<SYNTHETIC_DIAGNOSTIC_THREAD>"
+        },
+        {
+          "type": "turn.started"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 2/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 3/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 4/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 5/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: <REDACTED>)"
+        },
+        {
+          "type": "item.completed",
+          "item": {
+            "id": "item_0",
+            "type": "error",
+            "message": "Falling back from WebSockets to HTTPS transport. unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: <REDACTED>"
+          }
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 1/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 2/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 3/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 4/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "Reconnecting... 5/5 (unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>)"
+        },
+        {
+          "type": "error",
+          "message": "unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>"
+        },
+        {
+          "type": "turn.failed",
+          "error": {
+            "message": "unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: https://api.openai.com/v1/responses, cf-ray: <REDACTED>, request id: <REDACTED>"
+          }
+        }
+      ]
+    }
+  ],
+  "root_cause": "CLI in-process start resolves installation_id at CODEX_HOME before startup; official implementation opens the file read+write+create even when a valid id already exists. Reusing real CODEX_HOME as read-only cannot satisfy this. Moving the whole home into sandbox removes initialization EPERM but isolates away existing login.",
+  "remaining_blocker": "isolated CODEX_HOME has no authorized login; no credentials copied/linked/extracted and no new login initiated",
+  "minimum_authorization_needed": "User-approved normal ChatGPT login in the dedicated sandbox CODEX_HOME, retaining all current sandbox boundaries. No real skill-directory write, system security changes, API key or new paid provider required. Login is a new sandbox authorization and has not been performed.",
+  "behavior_results_unchanged": {
+    "original_first_turn": {
+      "passed": 11,
+      "failed": 1,
+      "blocked": 4
+    },
+    "post_fix_installation": "blocked_authentication",
+    "actual_Agent_file_IO": "blocked_authentication",
+    "new_session_recovery": "blocked_authentication"
+  }
+}
