@@ -2,7 +2,9 @@
 
 ## Unreleased · v0.1.x candidate
 
-工作树检测改为 `git rev-parse --is-inside-work-tree`：占位 `.git` 目录不再封锁上层目录（此前 home 作 dotfiles 仓、或宿主投放只读 `.git` 占位符时无法创建私人工作区）；git 不可用时退回 `.git/HEAD`、`gitdir:`、`.git` 符号链接的标记检查。**这改变一条既有行为**：空 `.git` 目录从"拒绝"变为"允许"，新增真实仓与非仓占位两类回归。可选脚本要求按实测更正为 Python 3.9+（3.9.6 跑完 108 项测试与 init/record/due/calibration）。
+`doctor` 补两项可恢复状态：`event_count`，以及遗留 `.record.lock` 的警告（结构 `ok` 但 `record` 会失败，此前无从得知）。新增 `--version`，打印 `SKILL.md` 声明的版本，升级后可直接核对。
+
+工作树检测改为 `git rev-parse --is-inside-work-tree`：占位 `.git` 目录不再封锁上层目录（此前 home 作 dotfiles 仓、或宿主投放只读 `.git` 占位符时无法创建私人工作区）；git 不可用时退回 `.git/HEAD`、`gitdir:`、`.git` 符号链接的标记检查。**这改变一条既有行为**：空 `.git` 目录从"拒绝"变为"允许"，新增真实仓与非仓占位两类回归。可选脚本要求按实测更正为 Python 3.9+（3.9.6 跑完 110 项测试与 init/record/due/calibration）。
 
 事件 v2 与 v1 兼容读取、到期复测、二元预测校准、初始化回滚及本地白名单导出；中英三步上手、独立技能安装目录与官方规范 CI。完整说明见 [发布说明草案](RELEASE_NOTES.md)。未创建 tag 或 release；真人≥7天新题复测和宿主自动触发仍待验收。
 
