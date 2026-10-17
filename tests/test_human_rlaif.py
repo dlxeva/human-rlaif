@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('workspace', ROOT / 'scripts/workspace.py')
@@ -139,6 +141,53 @@ class WorkspaceTests(unittest.TestCase):
 
     def test_cli_requires_event(self):
         self.assertEqual(workspace.main(['record', '--workspace', str(self.root)]), 1)
+
+    def test_cli_workflow_fresh_process_and_preservation(self):
+        """真实 CLI/文件回归，不代表 Agent 自主操作或真人学习效果。"""
+        def cli(command, *extra):
+            return subprocess.run(
+                [sys.executable, str(ROOT / 'scripts/workspace.py'), command,
+                 '--workspace', str(self.root), *extra],
+                capture_output=True, text=True, timeout=10,
+            )
+
+        created = cli('init')
+        self.assertEqual(created.returncode, 0, created.stderr)
+        self.assertTrue(json.loads(created.stdout)['created'])
+        policy_before = (self.root / 'HUMAN.md').read_bytes()
+        self.assertIn('协议状态：draft', policy_before.decode())
+        payload = event()
+        payload['human_response'] = '拒绝：尚无客户验证，先做低成本访谈。'
+        source = self.base / 'synthetic-event.json'
+        source.write_text(json.dumps(payload, ensure_ascii=False), encoding='utf-8')
+        recorded = cli('record', '--event', str(source))
+        self.assertEqual(recorded.returncode, 0, recorded.stderr)
+        event_path = self.root / 'events' / 'sample-1.json'
+        original = event_path.read_bytes()
+
+        # Each subprocess is fresh; neither persistence nor recovery is simulated.
+        inspected = cli('doctor')
+        self.assertEqual(inspected.returncode, 0, inspected.stderr)
+        self.assertTrue(json.loads(inspected.stdout)['ok'])
+        reread = subprocess.run(
+            [sys.executable, '-c',
+             'import pathlib,sys; print(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))',
+             str(event_path)], capture_output=True, text=True, timeout=10,
+        )
+        self.assertEqual(reread.returncode, 0, reread.stderr)
+        recovered = json.loads(reread.stdout)
+        for key, value in payload.items():
+            self.assertEqual(recovered[key], value)
+        self.assertEqual(recovered['evidence_status'], 'pending')
+        self.assertEqual((self.root / 'HUMAN.md').read_bytes(), policy_before)
+        repeated = cli('init')
+        self.assertEqual(repeated.returncode, 0, repeated.stderr)
+        self.assertFalse(json.loads(repeated.stdout)['created'])
+
+        duplicate = cli('record', '--event', str(source))
+        self.assertEqual(duplicate.returncode, 1)
+        self.assertEqual(event_path.read_bytes(), original)
+        self.assertEqual((self.root / 'HUMAN.md').read_bytes(), policy_before)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,142 @@
+test_cli_requires_event (test_human_rlaif.WorkspaceTests.test_cli_requires_event) ... human-rlaif: record 需要 --event。
+ok
+test_doctor_missing_file (test_human_rlaif.WorkspaceTests.test_doctor_missing_file) ... ERROR
+test_doctor_refuses_schema_change (test_human_rlaif.WorkspaceTests.test_doctor_refuses_schema_change) ... ERROR
+test_external_claim_requires_sources_and_feedback (test_human_rlaif.WorkspaceTests.test_external_claim_requires_sources_and_feedback) ... ok
+test_init_draft_and_structure (test_human_rlaif.WorkspaceTests.test_init_draft_and_structure) ... ERROR
+test_private_permissions (test_human_rlaif.WorkspaceTests.test_private_permissions) ... ERROR
+test_record_does_not_modify_policy (test_human_rlaif.WorkspaceTests.test_record_does_not_modify_policy) ... ERROR
+test_record_preserves_original_and_adds_receipt_time (test_human_rlaif.WorkspaceTests.test_record_preserves_original_and_adds_receipt_time) ... ERROR
+test_record_refuses_duplicate (test_human_rlaif.WorkspaceTests.test_record_refuses_duplicate) ... ERROR
+test_record_rejects_missing_reason (test_human_rlaif.WorkspaceTests.test_record_rejects_missing_reason) ... ok
+test_record_rejects_traversal (test_human_rlaif.WorkspaceTests.test_record_rejects_traversal) ... ok
+test_refuse_git_directory (test_human_rlaif.WorkspaceTests.test_refuse_git_directory) ... ok
+test_refuse_git_worktree_file (test_human_rlaif.WorkspaceTests.test_refuse_git_worktree_file) ... ok
+test_refuse_relative_path (test_human_rlaif.WorkspaceTests.test_refuse_relative_path) ... ok
+test_refuse_symlink_root (test_human_rlaif.WorkspaceTests.test_refuse_symlink_root) ... ok
+test_repeat_preserves_user_edits (test_human_rlaif.WorkspaceTests.test_repeat_preserves_user_edits) ... ERROR
+test_symlink_events_rejected (test_human_rlaif.WorkspaceTests.test_symlink_events_rejected) ... ERROR
+test_unknown_directory_is_not_overwritten (test_human_rlaif.WorkspaceTests.test_unknown_directory_is_not_overwritten) ... ok
+
+======================================================================
+ERROR: test_doctor_missing_file (test_human_rlaif.WorkspaceTests.test_doctor_missing_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 69, in test_doctor_missing_file
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_doctor_refuses_schema_change (test_human_rlaif.WorkspaceTests.test_doctor_refuses_schema_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 74, in test_doctor_refuses_schema_change
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_init_draft_and_structure (test_human_rlaif.WorkspaceTests.test_init_draft_and_structure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 31, in test_init_draft_and_structure
+    self.assertTrue(workspace.init(self.root)['created'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_private_permissions (test_human_rlaif.WorkspaceTests.test_private_permissions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 128, in test_private_permissions
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_record_does_not_modify_policy (test_human_rlaif.WorkspaceTests.test_record_does_not_modify_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 133, in test_record_does_not_modify_policy
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_record_preserves_original_and_adds_receipt_time (test_human_rlaif.WorkspaceTests.test_record_preserves_original_and_adds_receipt_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 79, in test_record_preserves_original_and_adds_receipt_time
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_record_refuses_duplicate (test_human_rlaif.WorkspaceTests.test_record_refuses_duplicate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 88, in test_record_refuses_duplicate
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_repeat_preserves_user_edits (test_human_rlaif.WorkspaceTests.test_repeat_preserves_user_edits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 36, in test_repeat_preserves_user_edits
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+======================================================================
+ERROR: test_symlink_events_rejected (test_human_rlaif.WorkspaceTests.test_symlink_events_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<PACKAGE>/tests/test_human_rlaif.py", line 120, in test_symlink_events_rejected
+    workspace.init(self.root)
+  File "<PACKAGE>/scripts/workspace.py", line 74, in init
+    root = safe_root(value)
+           ^^^^^^^^^^^^^^^^
+  File "<PACKAGE>/scripts/workspace.py", line 34, in safe_root
+    raise ValueError('私人工作区必须位于所有 Git 工作树之外。')
+ValueError: 私人工作区必须位于所有 Git 工作树之外。
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.005s
+
+FAILED (errors=9)
