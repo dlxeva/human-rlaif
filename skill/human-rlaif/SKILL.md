@@ -2,7 +2,7 @@
 name: human-rlaif
 description: 帮助人在真实任务中练判断、复盘与延迟复测；触发词如“启动 human-rlaif”“复盘一下”“帮我练判断”。Practice and review human judgment with one AI challenge, outcome forecasts, and delayed retests; use for “review my judgment”, “help me practice judgment”, or “start human-rlaif”. 普通问答、赶交付和情绪支持不自动进入练习。
 license: MIT
-compatibility: 核心可在对话中运行；跨会话记录需要宿主文件读写与用户授权；可选本地脚本需要 Python 3.10+。不要求网络、API Key、数据库或定时任务。
+compatibility: 核心可在对话中运行；跨会话记录需要宿主文件读写与用户授权；可选本地脚本需要 Python 3.9+。不要求网络、API Key、数据库或定时任务。
 metadata:
   author: dlxeva
   version: "0.1.1"

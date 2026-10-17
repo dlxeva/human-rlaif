@@ -6,6 +6,8 @@ import io
 import json
 import os
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest import mock
@@ -464,19 +466,33 @@ class WorkspaceV2Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             workspace.init(dangling)
 
-    def test_git_worktree_directory_file_and_broken_marker_rejected(self):
+    def test_git_worktree_markers_rejected_then_placeholder_allowed(self):
         marker = self.base / '.git'
-        for kind in ('dir', 'file', 'symlink'):
+        for kind in ('file', 'symlink'):
             with self.subTest(kind=kind):
-                if kind == 'dir':
-                    marker.mkdir()
-                elif kind == 'file':
+                if kind == 'file':
                     marker.write_text('gitdir: elsewhere')
                 else:
                     marker.symlink_to(self.base / 'absent-git')
                 with self.assertRaises(ValueError):
                     self.initialize()
-                marker.rmdir() if kind == 'dir' else marker.unlink()
+                marker.unlink()
+        self.assertFalse(self.root.exists())
+        # 空 `.git` 目录只是占位标记，不是工作树。旧实现按祖先标记一律拒绝，
+        # 会把 home（dotfiles 仓）和宿主共享目录整片封锁。
+        marker.mkdir()
+        self.assertTrue(self.initialize()['created'])
+
+    @unittest.skipUnless(shutil.which('git'), 'git required to build a real work tree')
+    def test_real_git_work_tree_rejected_including_nested(self):
+        subprocess.run(['git', 'init', '-q', str(self.base)], check=True, timeout=20)
+        with self.assertRaises(ValueError):
+            self.initialize()
+        nested = self.base / 'notes'
+        nested.mkdir()
+        with self.assertRaises(ValueError):
+            workspace.init(nested)
+        self.assertFalse(self.root.exists())
 
     @unittest.skipUnless(os.name == 'posix', 'POSIX permissions')
     def test_all_new_directories_files_events_and_export_private(self):

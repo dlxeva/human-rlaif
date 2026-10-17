@@ -3,6 +3,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 import subprocess
@@ -46,12 +47,27 @@ class WorkspaceTests(unittest.TestCase):
             workspace.init(self.root)
         self.assertEqual(list(self.root.iterdir()), [])
 
-    def test_refuse_git_directory(self):
-        (self.base / '.git').mkdir()
+    @unittest.skipUnless(shutil.which('git'), '需要 git 才能构造真实工作树')
+    def test_refuse_real_git_work_tree(self):
+        subprocess.run(['git', 'init', '-q', str(self.base)], check=True, timeout=20)
         with self.assertRaises(ValueError):
             workspace.init(self.root)
+        self.assertFalse(self.root.exists())
 
-    def test_refuse_git_worktree_file(self):
+    @unittest.skipUnless(shutil.which('git'), '需要 git 才能构造真实工作树')
+    def test_refuse_real_git_work_tree_nested(self):
+        nested = self.base / 'notes' / 'drafts'
+        nested.mkdir(parents=True)
+        subprocess.run(['git', 'init', '-q', str(self.base)], check=True, timeout=20)
+        with self.assertRaises(ValueError):
+            workspace.init(nested / 'private')
+
+    def test_empty_git_marker_does_not_block(self):
+        """占位 `.git` 目录不是工作树；旧实现会把整个 home 或共享目录封死。"""
+        (self.base / '.git').mkdir()
+        self.assertTrue(workspace.init(self.root)['created'])
+
+    def test_gitlink_file_still_blocks(self):
         (self.base / '.git').write_text('gitdir: elsewhere')
         with self.assertRaises(ValueError):
             workspace.init(self.root)
