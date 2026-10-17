@@ -7,7 +7,7 @@
 1. 每个改动都说明目的、目标场景、风险和验收方式。新行为协议最好附带合成用例。
 2. 明确区分：代码结构测试、Agent 行为实测、真实人的学习效果。不能用前者推断后者。
 3. 用户真实 HUMAN.md、私人对话、项目密钥、客户资料和未获授权的第三方内容不得上传到 issue 或 PR。
-4. 贡献前运行：`python scripts/validate_human_rlaif.py` 和 `python -m unittest discover -s tests -p 'test_human_rlaif.py' -v`。
+4. 贡献前运行：`python scripts/validate_human_rlaif.py` 和 `python -m unittest discover -s tests -p 'test*.py' -v`。
 5. 更新通用模板时，必须说明对旧私人工作区的迁移影响，不能静默覆盖已有规范。
 6. 相关研究工作请在 `paper/` 中使用明确的版本和出处，论文的许可独立于本仓库 MIT 许可。
 

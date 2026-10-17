@@ -1,0 +1,90 @@
+{
+  "base_commit": "97d7ed4c9f421bc6b7df2f93a90d591b232ab175",
+  "files": [
+    {
+      "path": "evals/runs/2026-10-17-cloud/README.md",
+      "unchanged": false,
+      "only_prefatory_navigation": true,
+      "original_sha256": "c576f8f00e151f6547a771fd531774b0d0f65a1d9a192e6389f896519df6ee26",
+      "current_sha256": "9ce511994543df1b7226d7d9cbbe048c6e056d33161abe73cb7ae8493628b122"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/checks.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "bf1d875e2fcc3f9965308711aa44c2720020f529bfa87a1739badbe1e97017ce",
+      "current_sha256": "bf1d875e2fcc3f9965308711aa44c2720020f529bfa87a1739badbe1e97017ce"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/criteria.frozen.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "14677e685c42c64c459f8bf793e864e60202455fe10fdfc5329bcdbbad09abb2",
+      "current_sha256": "14677e685c42c64c459f8bf793e864e60202455fe10fdfc5329bcdbbad09abb2"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/observations.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "42ee85fbc837c7c3bac117c622149043f42cedf7612566c028aca17d0055cee3",
+      "current_sha256": "42ee85fbc837c7c3bac117c622149043f42cedf7612566c028aca17d0055cee3"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/recovery-fixture.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "7123548328cf54234ff2edf69f746ddb226094475eb6f636f9e3e9e443fbea74",
+      "current_sha256": "7123548328cf54234ff2edf69f746ddb226094475eb6f636f9e3e9e443fbea74"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/tool-summaries.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "e0f1079bd3e2055cb9aedbdaf735e04bbedd9995f1bcdd2f9da8b86714cc77e6",
+      "current_sha256": "e0f1079bd3e2055cb9aedbdaf735e04bbedd9995f1bcdd2f9da8b86714cc77e6"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/unit-tests-final-local.txt",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "ffc958931d0ba828ea5a9c53ab667552ef11322dfaec9d734dd0c24957d56b6d",
+      "current_sha256": "ffc958931d0ba828ea5a9c53ab667552ef11322dfaec9d734dd0c24957d56b6d"
+    },
+    {
+      "path": "evals/runs/2026-10-17-cloud/unit-tests-original.txt",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "c8ef4e44563ec08607aeb70bf50347d0a6f794c219281d820c8968e0d0aced51",
+      "current_sha256": "c8ef4e44563ec08607aeb70bf50347d0a6f794c219281d820c8968e0d0aced51"
+    },
+    {
+      "path": "evals/runs/2026-10-17/README.md",
+      "unchanged": false,
+      "only_prefatory_navigation": true,
+      "original_sha256": "097186b649b055ddafd5452c03d897e800430e5b1382b587ab764bd777f59242",
+      "current_sha256": "f4fb1150fbdd0565310aedab5c294b5de43579f3e5a4b9df45cacafeb0ab0161"
+    },
+    {
+      "path": "evals/runs/2026-10-17/cases.frozen.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "5793a6137405d172a3282a011e3c77d54abb56ef2940f66e46b7b30c2e25b590",
+      "current_sha256": "5793a6137405d172a3282a011e3c77d54abb56ef2940f66e46b7b30c2e25b590"
+    },
+    {
+      "path": "evals/runs/2026-10-17/observations.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "ce5c4086d5104f7a095bf0e8ce245c3013d7e666f22b12a43b2a084f772dda77",
+      "current_sha256": "ce5c4086d5104f7a095bf0e8ce245c3013d7e666f22b12a43b2a084f772dda77"
+    },
+    {
+      "path": "evals/runs/2026-10-17/startup-diagnostics.json",
+      "unchanged": true,
+      "only_prefatory_navigation": false,
+      "original_sha256": "a4a1315682f46ff917d1f437c9c6adb57814a507eb703508f51fec27360dd1b0",
+      "current_sha256": "a4a1315682f46ff917d1f437c9c6adb57814a507eb703508f51fec27360dd1b0"
+    }
+  ],
+  "all_raw_evidence_unchanged": true
+}

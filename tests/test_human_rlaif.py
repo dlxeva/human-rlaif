@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('workspace', ROOT / 'scripts/workspace.py')
+spec = importlib.util.spec_from_file_location('workspace', ROOT / 'skill/human-rlaif/scripts/workspace.py')
 workspace = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(workspace)
 
@@ -146,7 +146,7 @@ class WorkspaceTests(unittest.TestCase):
         """真实 CLI/文件回归，不代表 Agent 自主操作或真人学习效果。"""
         def cli(command, *extra):
             return subprocess.run(
-                [sys.executable, str(ROOT / 'scripts/workspace.py'), command,
+                [sys.executable, str(ROOT / 'skill/human-rlaif/scripts/workspace.py'), command,
                  '--workspace', str(self.root), *extra],
                 capture_output=True, text=True, timeout=10,
             )

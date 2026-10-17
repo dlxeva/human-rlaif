@@ -1,0 +1,39 @@
+{
+  "base_commit": "97d7ed4c9f421bc6b7df2f93a90d591b232ab175",
+  "scope": "Local engineering validation; no remote PR or CI has run for this change",
+  "python": "3.12.14",
+  "tests": {
+    "total": 105,
+    "passed": 105,
+    "failed": 0,
+    "skipped": 0,
+    "legacy_workspace": 19,
+    "workspace_v2": 42,
+    "supplemental_skill_spec": 43,
+    "portable_installable_package": 1
+  },
+  "commands": [
+    "python -m unittest discover -s tests -p test*.py -v",
+    "skills-ref validate skill/human-rlaif",
+    "python scripts/validate_human_rlaif.py",
+    "git diff --check"
+  ],
+  "official_skills_ref": {
+    "version": "0.1.0",
+    "repository": "https://github.com/agentskills/agentskills",
+    "commit": "f130f348f502d9804278a617f86929846896d2e9",
+    "result": "passed"
+  },
+  "structure": "passed",
+  "diff_check": "passed",
+  "test_temp": "Dedicated authorized non-Git temporary directory; Git guard unchanged and existing placeholders preserved",
+  "historical_evidence": "10 raw evidence files unchanged; 2 historical README bodies unchanged with prefatory navigation",
+  "behavior": "One three-turn synthetic response sequence, manually loaded skill, 5 response criteria passed; not auto-trigger or human evidence",
+  "pending": [
+    "Author real task and at least 7-day new-task retest",
+    "Host English automatic trigger",
+    "Strongly isolated end-to-end Agent installation and private persistence",
+    "Remote draft PR and exact-head CI blocked by absent supported noreply-capable push route",
+    "Remote topics; tag/release intentionally not created"
+  ]
+}

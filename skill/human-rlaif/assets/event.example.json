@@ -1,0 +1,23 @@
+{
+  "id": "synthetic-example-001",
+  "mode": "learning",
+  "human_input": "合成示例：我倾向修改文章开头，预期改版读完率超过原版，概率为 70%；还没有分人群数据。",
+  "ai_feedback": "合成示例中的唯一挑战：什么证据能区分开头承接不足与受众不匹配？",
+  "human_response": "合成示例：先按来源看读完率，再决定是否修改；原预测保留。",
+  "action": "pending",
+  "reality_feedback": "unknown",
+  "evidence_status": "pending",
+  "sources": [],
+  "task_type": "content-judgment",
+  "assistance": "critique",
+  "isolation": "unknown",
+  "rubric_ref": "synthetic-demo-rubric-v1",
+  "human_draft_at": "2026-10-17T09:00:00Z",
+  "ai_feedback_at": "2026-10-17T09:02:00Z",
+  "retest_interval": 7,
+  "due_at": "2026-10-24T09:00:00Z",
+  "prediction_type": "binary",
+  "prediction": "合成预测：截至 2026-10-24T09:00:00Z，相同口径下改版文章的读完率高于原版。",
+  "confidence": 70,
+  "resolution_criteria": "合成判据：在约定时点比较同来源、同观察时长的读完率；样本或口径不足时不解答预测。"
+}

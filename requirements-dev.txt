@@ -1,0 +1,10 @@
+# Development/CI only. The portable skill's workspace.py uses the standard library.
+# Trusted origin: https://agentskills.io/specification links to
+# https://github.com/agentskills/agentskills/tree/main/skills-ref
+# Reviewed official skills-ref 0.1.0 source on 2026-10-17; do not replace with a
+# bare package-name installation (a PyPI namesake is not source verification).
+skills-ref @ git+https://github.com/agentskills/agentskills.git@f130f348f502d9804278a617f86929846896d2e9#subdirectory=skills-ref
+click==8.5.0
+strictyaml==1.7.3
+python-dateutil==2.9.0.post0
+six==1.17.0
