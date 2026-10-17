@@ -1,0 +1,40 @@
+{
+  "package_commit": "f53b5885e97d73a815afdbfe30bdfaac4e3837e8",
+  "structure": "passed",
+  "diff_check": "passed",
+  "original_unit_tests": {
+    "total": 18,
+    "passed": 9,
+    "environment_blocked": 9,
+    "raw_exit": 1
+  },
+  "extended_unit_tests": {
+    "total": 19,
+    "passed": 9,
+    "environment_blocked": 10,
+    "raw_exit": 1,
+    "raw_unittest_summary": "FAILED (failures=1, errors=9)"
+  },
+  "blocker": "Read-only .git placeholder ancestors in both cloud shared directory and temporary directory. git rev-parse reports no work tree. safe_root conservatively rejects any ancestor .git; unchanged. No deletion or security-rule weakening.",
+  "recovery_fixture_hashes_unchanged": true,
+  "strict_agent_write_sandbox": "blocked",
+  "sandbox_probes": [
+    {
+      "purpose": "filesystem plus network namespace",
+      "result": "bwrap: loopback: Failed to create NETLINK_ROUTE socket: Operation not permitted",
+      "exit": 1
+    },
+    {
+      "purpose": "filesystem only; no network namespace request",
+      "result": "bwrap: Can't create file /sandbox: Read-only file system",
+      "exit": 1
+    }
+  ],
+  "prior_ci": {
+    "sha": "f53b5885e97d73a815afdbfe30bdfaac4e3837e8",
+    "run_id": 39023632626,
+    "conclusion": "success",
+    "url": "https://github.com/dlxeva/human-rlaif/actions/runs/39023632626"
+  },
+  "final_commit_ci": "Check exact final SHA externally; do not infer from prior CI."
+}

@@ -1,0 +1,34 @@
+{
+  "provenance": "Agent-reported follow-up export of prior tool calls, not a host-certified complete tool trace. Paths sanitized to <PACKAGE>/<FIXTURE>. No chain-of-thought included.",
+  "install-unspecified": [
+    "cat <PACKAGE>/SKILL.md",
+    "cat <PACKAGE>/references/install.md <PACKAGE>/references/protocol.md <PACKAGE>/assets/templates/HUMAN.md <PACKAGE>/assets/templates/BASELINE.md"
+  ],
+  "install-existing": [
+    "cat <PACKAGE>/SKILL.md",
+    "cat <PACKAGE>/references/install.md <PACKAGE>/references/protocol.md"
+  ],
+  "draft-confirmation": [
+    "cat <PACKAGE>/SKILL.md",
+    "cat <PACKAGE>/assets/templates/HUMAN.md <PACKAGE>/assets/templates/BASELINE.md <PACKAGE>/references/protocol.md <PACKAGE>/references/install.md"
+  ],
+  "fresh-read-recovery": {
+    "read_files": [
+      "SKILL.md",
+      "references/protocol.md",
+      "references/install.md",
+      "scripts/workspace.py",
+      "<FIXTURE>/HUMAN.md",
+      "<FIXTURE>/STATE.md",
+      "<FIXTURE>/JOURNAL.md",
+      "<FIXTURE>/events/cloud-001.json",
+      "<FIXTURE>/BASELINE.md",
+      "<FIXTURE>/FIXTURE-NOTICE.txt"
+    ],
+    "doctor_calls": 2,
+    "doctor_exit": 1,
+    "doctor_error": "私人工作区必须位于所有 Git 工作树之外。",
+    "marker_content_read": false
+  },
+  "controls": "No tools authorized; no tool use reported."
+}
