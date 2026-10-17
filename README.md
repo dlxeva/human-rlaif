@@ -1,26 +1,36 @@
-# human-rlaif · v0.1.0
+# human-rlaif
 
-一个可安装的 AI 共学协作包。Agent 组织责任定位、人的参与约定、基线、真实任务、召回摩擦与复盘；人提供真实材料、参与关键判断，并带回现实反馈。
+> Human Reinforcement Learning from AI Feedback · 一套面向真实任务的人机长期共学协作实践包。
 
-这是初始参考实现。自动化测试检查结构和文件操作；行为用例、真实宿主运行与长期学习效果分别验收。当前没有普遍能力提升承诺。
+**独立开源项目** | [开始安装](#给-agent-的安装指令) · [人的参与规范](assets/templates/HUMAN.md) · [研究论文](paper/README.md) · [与 PBL 的关系](RELATED_PROJECTS.md) · [引用本项目](CITATION.cff)
 
-## 交给你的 agent
+`human-rlaif` 是一个可安装的 [Agent Skill](https://agentskills.io/specification)。它帮助 Agent 组织责任定位、人的高标准输入与参与、初始基线、召回与思维摩擦、现实反馈、延迟复测和协作复盘。用户负责真实信息、关键判断、行动与验证，AI 负责完整建模、挑战与协作管理。
 
-> 从 https://github.com/dlxeva/human-rlaif 安装 human-rlaif 技能。先阅读 SKILL.md 和安装说明，检查宿主能力，确认私人资料的保存位置；保留我的现有规范和文件。然后用我手头一个真实问题开始第一轮，共同确认 HUMAN.md 中对我的输入和参与要求。
+它是 **v0.1.0 参考实现**：本地结构与文件助手可以测试；模型行为、跨宿主兼容性、人的长期能力增长仍需要独立验证。本项目不提供成长效果保证。
 
-安装来源：[dlxeva/human-rlaif](https://github.com/dlxeva/human-rlaif)。先将仓库获取到本地，再将仓库根目录的完整公共文件复制到宿主支持的技能目录，目录名为 `human-rlaif`。`SKILL.md` 位于仓库根目录。具体路径需由 agent 根据当前宿主核实。该目录自包含，可以独立分发。只有 SKILL.md 的单文件复制不完整。
+## 给 Agent 的安装指令
 
-本技能从 [pbl-loop](https://github.com/dlxeva/pbl-loop) 的 human-rlaif 实现迁出，作为独立仓库维护。pbl-loop 中的 `capability-loop` 无需同时安装；两者共享部分能力证据设计原则，human-rlaif 覆盖协作的参与标准和长期组织流程。来源、作者和迁移范围见 [迁移记录](PROVENANCE.md)。
+> 请从 `https://github.com/dlxeva/human-rlaif` 安装整个 Agent Skill `human-rlaif`。先阅读仓库根目录 `SKILL.md` 和 `references/install.md`，检查宿主的技能加载与私人文件能力。获得我确认后创建私人工作区，和我一起确认 HUMAN.md 中人类的输入与协作规范，然后选择一个真实问题，先保存我的原始判断，再完成第一轮实践。不要上传个人记录，也不要覆盖已有状态。
 
-## 日常使用
+完整复制本仓库根目录到宿主认可的 Skills 路径，保证 `SKILL.md` 与 `references/`、`assets/`、`scripts/` 同级。GitHub 链接安装、路径检测和跨会话恢复以具体宿主实际能力为准。`SKILL.md` 是技能入口，仓库根目录即技能目录。
 
-“这次按共学模式处理”“今天先赶交付”“复盘近期判断”“检查上次的待验证事项”“换一个新问题测一下”。支持 `production`、`learning`、`assessment`，可以随时暂停训练。
+## 三种模式
 
-第一次只选一个领域和一项能力。让 agent 读取已有背景，再提供自己的真实问题与初步想法。粗糙口述可以使用，未知项需如实说明。首轮完成参与约定、初始样本和一次实际推进；完整基线在后续补足。
+- `production`：尽快完成现实交付，人主导目标、取舍和验收。
+- `learning`：保留人的独立尝试，按需安排召回、反例、证据检查与迁移练习。
+- `assessment`：锁定任务与帮助条件，分别记录独立表现和协作表现。
 
-## 私人目录
+可以用自然语言说「启动 human-rlaif」「这次按共学模式处理」「今天直接赶交付」「复盘一下」「换一个新任务测一下」。普通问答和情绪支持不自动加入训练。
 
-在技能目录中、用户确认私人保存位置后运行，Python 3.10+，无第三方依赖：
+## HUMAN.md：人也要承担高标准输入
+
+[HUMAN.md 模板](assets/templates/HUMAN.md)包含人的参与承诺：提供真实且有边界的上下文；暴露已有判断、未知项和证据身份；解释关键采纳或拒绝；参与有成本的取舍；带回现实行动与结果。初次确认后才成为个人的协作协议。允许口语、不确定和未成熟的想法，必要时由 Agent 协助整理。AI 也必须遵守其自身的分析、检索、纠错与权限边界。
+
+## 私人工作区
+
+公共技能源码和私人的 `HUMAN.md`、`BASELINE.md`、`STATE.md`、`JOURNAL.md`、事件记录相互隔离。**个人工作区必须放在 Git 工作树外**，本包默认没有遥测、同步或自动公开行为。
+
+本地脚本可选，需 Python 3.10+：
 
 ```bash
 python scripts/workspace.py init --workspace /absolute/private/path
@@ -28,21 +38,21 @@ python scripts/workspace.py doctor --workspace /absolute/private/path
 python scripts/workspace.py record --workspace /absolute/private/path --event /absolute/path/episode.json
 ```
 
-路径示例需要替换成获准位置。初始化拒绝 Git 工作树中的个人目录，重复运行会检查现状并保留已有内容。`init` 仅创建 draft 模板，agent 随后和本人确认协议。脚本不会安装宿主配置、创建提醒、改写个人原则或发送资料。
+这些操作只验证文件结构并保存明确事件。初始化只生成 draft 参与协议，不代表用户已经确认，更不能据此断定学习效果。详见 [安装说明](references/install.md) 与 [运行协议](references/protocol.md)。
 
-工作目录包含 HUMAN.md、BASELINE.md、STATE.md、JOURNAL.md、事件目录与格式标记。人审后的状态概要由 agent 在用户授权范围内维护，事件文件通过唯一 ID 保存。状态变更与验证结论不能从文件创建成功自动推导。
+## 研究依据与相关项目
 
-## 资料
+- [Human-RLAIF 论文、正式引用与证据边界](paper/README.md)：[SSRN 6928698](https://doi.org/10.2139/ssrn.6928698)。论文全文仍由原始发布平台提供，当前仓库不包含 PDF 副本。
+- [与 `pbl-loop` 的关系](RELATED_PROJECTS.md)：有关联的能力训练研究与实践项目，依赖关系为零。
+- [虚构示例](references/examples.md)：只演示协议，不代表实证结果。
 
-- [核心 Skill](SKILL.md)
-- [人的参与规范模板](assets/templates/HUMAN.md)
-- [运行协议](references/protocol.md)
-- [安装、恢复与升级](references/install.md)
-- [虚构的完整案例](references/examples.md)
-- [Human-RLAIF 论文与证据边界](references/research.md) · [SSRN 6928698](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6928698)
+## 测试与许可
 
-## 验证与许可
+```bash
+python scripts/validate_human_rlaif.py
+python -m unittest discover -s tests -p 'test_human_rlaif.py' -v
+```
 
-仓库根目录运行 `python -m unittest discover -s tests -p 'test_human_rlaif.py' -v` 和 `python scripts/validate_human_rlaif.py`。行为用例在 `evals/human-rlaif-cases.json`；运行方法在 `evals/HUMAN-RLAIF.md`。用例定义不等于模型实测通过。
+[行为测试协议](evals/HUMAN-RLAIF.md) 与 [行为用例](evals/human-rlaif-cases.json) 已提供，但真实宿主运行和长期学习实验尚未完成。
 
-技能代码和新文档沿用 [MIT 许可](LICENSE)。链接论文保留其自身许可；本包未复制论文全文、私人对话或未公开研究材料。
+公共代码与原创文档使用 [MIT 许可证](LICENSE)。论文保留发布平台及原作者的版权安排，MIT **不**覆盖论文全文。个人记录默认只属于使用者。

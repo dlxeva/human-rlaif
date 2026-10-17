@@ -4,7 +4,7 @@
 
 先阅读本包和脚本，遵守宿主权限。安装授权只涵盖公共技能文件；私人工作目录的位置、写入范围和第三方发送另行确认。
 
-公共来源：[dlxeva/human-rlaif](https://github.com/dlxeva/human-rlaif)。将本仓库根目录的完整公共文件复制到宿主支持的 Skills 位置，目标目录命名为 human-rlaif；SKILL.md 应位于目标目录根部。不要只复制单个 SKILL.md。目录名和 frontmatter name 均为 human-rlaif。宿主路径以当前官方说明为准，本包不会自行改写 AGENTS.md、全局规则或其他技能。
+将本独立仓库完整内容作为 `human-rlaif` 技能目录放到宿主支持的 Skills 位置，确保仓库根目录 `SKILL.md` 保持在技能目录顶层。目录名和 frontmatter name 均为 human-rlaif。宿主路径以当前官方说明为准，本包不会自行改写 AGENTS.md、全局规则或其他技能。
 
 报告三种状态：公共文件已放置；宿主已识别技能；实际首轮已完成。逐项验证，禁止合并宣称“全部可用”。建议明确调用一次 human-rlaif 检查激活，再开始 onboarding。
 

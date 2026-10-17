@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, cite this repository; cite the research paper separately for its theoretical claims."
+type: software
+title: "human-rlaif: agent skill for reflective human-AI collaboration"
+version: "0.1.0"
+date-released: "2026-10-17"
+authors:
+  - family-names: Du
+    given-names: Lingxiao
+    alias: dlxeva
+license: MIT
+repository-code: "https://github.com/dlxeva/human-rlaif"
+references:
+  - type: article
+    authors:
+      - family-names: Du
+        given-names: Lingxiao
+    title: "Human Reinforcement Learning from AI Feedback: Feedback Mechanisms, Meta-Collaborative Monitoring, and Identity Positioning in Long-Term Human-AI Collaboration"
+    year: 2026
+    doi: 10.2139/ssrn.6928698

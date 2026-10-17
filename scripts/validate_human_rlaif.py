@@ -13,7 +13,8 @@ def main():
     errors = []
     required = ['SKILL.md', 'README.md', 'LICENSE', 'scripts/workspace.py',
                 'references/protocol.md', 'references/install.md', 'references/research.md',
-                'references/examples.md', 'assets/event.example.json']
+                'references/examples.md', 'assets/event.example.json',
+                'paper/README.md', 'paper/citation.bib', 'RELATED_PROJECTS.md', 'CITATION.cff', 'CONTRIBUTING.md']
     required += ['assets/templates/' + name for name in ('HUMAN.md', 'BASELINE.md', 'STATE.md', 'JOURNAL.md')]
     for name in required:
         if not (SKILL / name).is_file():

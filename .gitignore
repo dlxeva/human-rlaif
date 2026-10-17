@@ -1,10 +1,21 @@
+# Derived and local data only
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.coverage
 .DS_Store
 .env
 .env.*
 !.env.example
-# Personal state belongs outside Git; only assets/templates is public.
+# personal workspaces (do not store these in the repository)
+/private/
+/workspace/
+/workspaces/
+/local-state/
+/dist/
+/build/
+
+# Personal state files are public only under assets/templates/.
 /HUMAN.md
 /BASELINE.md
 /STATE.md
