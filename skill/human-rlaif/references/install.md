@@ -27,7 +27,7 @@
 
 ## 命令
 
-Python 3.10+ 可从已安装技能目录运行：
+Python 3.9+ 可从已安装技能目录运行（3.9.6 实测 init/record/due/calibration；CI 用 3.11）：
 
 ```bash
 python scripts/workspace.py init --workspace /absolute/private/path
@@ -44,7 +44,7 @@ python scripts/workspace.py export --workspace /absolute/private/path --output /
 
 ## 私密、初始化失败与恢复
 
-私人工作区必须位于所有 Git 工作树之外，并避免 iCloud、Dropbox、OneDrive、Google Drive 等自动同步目录。同步服务或云模型可能处理其中内容，文件权限不等于完整的数据隔离。脚本拒绝已有符号链接路径，支持的 POSIX 环境创建目录 0700、文件 0600。
+私人工作区必须位于所有 Git 工作树之外，并避免 iCloud、Dropbox、OneDrive、Google Drive 等自动同步目录。同步服务或云模型可能处理其中内容，文件权限不等于完整的数据隔离。工作树判定用 `git rev-parse --is-inside-work-tree`；git 不可用或拒绝作答时，退回只承认 `.git/HEAD`、`gitdir:` 或 `.git` 符号链接的标记检查，占位 `.git` 目录不会封锁上层目录。脚本拒绝已有符号链接路径，支持的 POSIX 环境创建目录 0700、文件 0600。
 
 `init` 已有完整工作区时不覆盖；未知或残缺目录拒绝覆盖。新建失败时回滚本次创建的内容，保留预先存在的目录与文件；失败会报错；若有残留先检查归属，不能默认删除。新会话实际读取同一目录后才能称已恢复。
 

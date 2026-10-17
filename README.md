@@ -32,7 +32,7 @@ An Agent Skill for practicing judgment through AI feedback and real-world checks
 
 ## 保存、到期检查与校准
 
-私人工作区放在 Git 工作树和 iCloud/Dropbox 等同步目录之外。Python 3.10+ 可选，从仓库根目录运行：
+私人工作区放在 Git 工作树和 iCloud/Dropbox 等同步目录之外。Python 3.9+ 可选（3.9.6 实测通过），从仓库根目录运行：
 
 ```bash
 python skill/human-rlaif/scripts/workspace.py init --workspace /absolute/private/path

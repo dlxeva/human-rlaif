@@ -32,7 +32,7 @@ Install only `skill/human-rlaif/`, without the paper, tests, or whole repository
 
 ## Save, check due items, and calibrate
 
-Keep the private workspace outside Git working trees and synced folders such as iCloud or Dropbox. The optional helper requires Python 3.10+; from the repository root:
+Keep the private workspace outside Git working trees and synced folders such as iCloud or Dropbox. The optional helper requires Python 3.9+ (verified on 3.9.6; CI runs 3.11); from the repository root:
 
 ```bash
 python skill/human-rlaif/scripts/workspace.py init --workspace /absolute/private/path

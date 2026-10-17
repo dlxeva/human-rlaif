@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import re
 import stat
+import subprocess
 import sys
 from typing import Any
 import warnings
@@ -40,6 +41,53 @@ SYNC_NAMES = ('icloud', 'dropbox', 'onedrive', 'mobile documents', 'google drive
               'googledrive', 'box sync', 'syncthing', 'nextcloud')
 
 
+def _has_work_tree_marker(path: Path) -> bool:
+    """git 不可用或拒绝作答时的降级判断：只认真工作树的标记。
+
+    普通 `.git` 目录必须有 HEAD，gitlink 文件必须以 `gitdir:` 开头，符号链接
+    一律按标记处理。占位用的空 `.git` 目录不算工作树，否则任何带 dotfiles 仓
+    的 home、或宿主投放只读 `.git` 占位符的目录都会被整体封锁。
+    """
+    for part in (path, *path.parents):
+        marker = part / '.git'
+        if marker.is_symlink():
+            return True
+        if marker.is_dir() and (marker / 'HEAD').exists():
+            return True
+        if marker.is_file():
+            try:
+                head = marker.read_text(encoding='utf-8', errors='replace')[:8]
+            except OSError:
+                continue
+            if head.lower().startswith('gitdir:'):
+                return True
+    return False
+
+
+def _inside_work_tree(path: Path) -> bool:
+    """由 git 自身判定 path 是否落在工作树内。
+
+    `git rev-parse` 是权威判断：它认 gitlink、子模块和上溯目录，也不会把占位
+    `.git` 目录当仓库。命令不可用或报错（例如 dubious ownership）时退回标记
+    检查，保守而不误封。
+    """
+    probe = path
+    while not probe.exists() and probe != probe.parent:
+        probe = probe.parent
+    env = {k: v for k, v in os.environ.items()
+           if k not in {'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE'}}
+    try:
+        done = subprocess.run(
+            ['git', '-C', str(probe), 'rev-parse', '--is-inside-work-tree'],
+            capture_output=True, text=True, timeout=5, env=env,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return _has_work_tree_marker(path)
+    if done.returncode != 0:
+        return _has_work_tree_marker(path)
+    return done.stdout.strip() == 'true'
+
+
 def safe_root(value: str | Path) -> Path:
     """拒绝相对路径、符号链接（包括悬空链接）和 Git 工作树。"""
     path = Path(value).expanduser()
@@ -48,8 +96,8 @@ def safe_root(value: str | Path) -> Path:
     for part in (path, *path.parents):
         if part.is_symlink():
             raise ValueError('路径包含符号链接，请指定真实私人目录。')
-        if (part / '.git').exists() or (part / '.git').is_symlink():
-            raise ValueError('私人工作区和导出文件必须位于所有 Git 工作树之外。')
+    if _inside_work_tree(path):
+        raise ValueError('私人工作区和导出文件必须位于所有 Git 工作树之外。')
     return path.resolve()
 
 
