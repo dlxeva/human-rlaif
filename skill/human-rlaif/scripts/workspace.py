@@ -191,6 +191,7 @@ def doctor(value: str | Path) -> dict[str, Any]:
         problems.append('缺失或不安全的目录：events')
     marker = None
     protocol_status = 'unverified'
+    event_count: int | None = None
     if not problems:
         try:
             marker = _read_json(root / MARKER)
@@ -202,11 +203,20 @@ def doctor(value: str | Path) -> dict[str, Any]:
             if DRAFT_RE.search((root / 'HUMAN.md').read_text(encoding='utf-8')):
                 protocol_status = 'draft'
                 notices.append('HUMAN.md 仍为 draft，尚未确认；保存事件不代表本人同意协议。')
+            event_count = sum(1 for path in events.iterdir()
+                              if path.is_file() and path.suffix == '.json')
         except (ValueError, OSError):
             problems.append('工作区格式标记或 HUMAN.md 无法读取。')
+    lock = root / '.record.lock'
+    if lock.exists() or lock.is_symlink():
+        # 锁未释放时 record 会失败，但工作区结构本身完好；doctor 必须把这种
+        # "ok 但写不进去" 的状态说出来，否则每轮第一个命令会误导人。
+        notices.append('存在 .record.lock：另一次 record 可能正在运行，或上次写入异常退出留下锁；'
+                       '确认没有写入进程后，人工删除该目录再重试。')
     return {'ok': not problems, 'workspace': str(root), 'problems': problems,
             'warnings': notices, 'protocol_status': protocol_status,
             'schema_version': marker.get('schema_version') if isinstance(marker, dict) else None,
+            'event_count': event_count,
             'scope': '仅检查本地结构；未验证宿主自动加载、本人同意或学习效果。'}
 
 
@@ -539,8 +549,19 @@ def export_redacted(value: str | Path, output: str | Path) -> Path:
     return target
 
 
+def skill_version() -> str:
+    """读取 SKILL.md 的 metadata.version；读不到就返回 unknown，不猜。"""
+    try:
+        parts = (PACKAGE / 'SKILL.md').read_text(encoding='utf-8').split('---', 2)
+    except OSError:
+        return 'unknown'
+    found = re.search(r'^\s+version:\s*"?([0-9]+\.[0-9]+\.[0-9]+)"?\s*$', parts[1], re.M) if len(parts) == 3 else None
+    return found.group(1) if found else 'unknown'
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--version', action='version', version=f'human-rlaif {skill_version()}')
     parser.add_argument('command', choices=('init', 'doctor', 'record', 'due', 'calibration', 'export'))
     parser.add_argument('--workspace', required=True)
     parser.add_argument('--event', help='record 的 UTF-8 JSON 输入文件，最多 1 MiB')

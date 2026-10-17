@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -535,6 +536,29 @@ class WorkspaceV2Tests(unittest.TestCase):
         lock.rmdir()
         self.record_at(event())
         self.assertFalse(lock.exists())
+
+    def test_doctor_reports_event_count_and_stale_lock(self):
+        self.initialize()
+        self.assertEqual(workspace.doctor(self.root)['event_count'], 0)
+        self.record_at(event())
+        fresh = workspace.doctor(self.root)
+        self.assertEqual(fresh['event_count'], 1)
+        self.assertTrue(fresh['ok'])
+        self.assertFalse(any('.record.lock' in note for note in fresh['warnings']))
+        (self.root / '.record.lock').mkdir()
+        stale = workspace.doctor(self.root)
+        # 结构完好但写不进去：doctor 必须说出来，否则每轮第一个命令会误导人。
+        self.assertTrue(stale['ok'])
+        self.assertTrue(any('.record.lock' in note for note in stale['warnings']))
+
+    def test_cli_version_matches_skill_frontmatter(self):
+        front = (ROOT / 'skill/human-rlaif/SKILL.md').read_text(encoding='utf-8')
+        declared = next(line.split(':', 1)[1].strip().strip('"') for line in front.splitlines()
+                        if line.strip().startswith('version:'))
+        run = subprocess.run([sys.executable, str(SCRIPT), '--version'],
+                             capture_output=True, text=True, timeout=10)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        self.assertEqual(run.stdout.strip(), f'human-rlaif {declared}')
 
     def test_export_whitelist_removes_free_text_paths_ids_and_timestamps(self):
         self.initialize()

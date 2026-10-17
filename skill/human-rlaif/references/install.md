@@ -40,6 +40,8 @@ python scripts/workspace.py export --workspace /absolute/private/path --output /
 
 在本仓库根目录开发时，把命令中的脚本路径换成 `skill/human-rlaif/scripts/workspace.py`。`due --as-of 2026-10-24T09:00:00Z` 可以按指定时间检查到期情况；演示时间不能当成真实七天观察。
 
+`--version` 打印的是 `SKILL.md` 里声明的版本，升级后可直接确认实际装的是哪一版。`doctor` 会同时给出 `event_count`，并在发现遗留 `.record.lock` 时写进 `warnings`——那时结构仍然 `ok`，但 `record` 会失败。
+
 没有 Python 时按模板手工管理；没有持久文件能力时使用会话内记录，并提供可复制的续接卡。`doctor` 只检查本地结构，不能验证宿主自动加载、用户同意、真实来源或学习效果。
 
 ## 私密、初始化失败与恢复
